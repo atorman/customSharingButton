@@ -1,0 +1,5 @@
+This repository contains components necessary to build a custom sharing button on a salesforce.com page.
+
+This solution uses the UserRecordAccess sObject. To learn more about this object and it's uses, check out the online docs: http://www.salesforce.com/us/developer/docs/api/Content/sforce_api_objects_userrecordaccess.htm
+
+See salesforce hacker blog post: http://www.salesforcehacker.com/2013/09/build-your-own-custom-sharing-button.html for more information on this solution.
