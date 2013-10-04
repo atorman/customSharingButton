@@ -12,11 +12,7 @@
    public class UserAccessController{ 
 
    // create a getter/setter for user's name passed in when the Find User button is pressed
-   public String uName 
-   {
-        get { return uName;}
-        set { uName = value;}
-    }
+   public String uName { get; set; }
 
    // get the result from the queryUserName and present it into the page
    public List <User> getUserResults() 
