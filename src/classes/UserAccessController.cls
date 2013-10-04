@@ -10,8 +10,6 @@
  */   
    // **************** CONSTRUCTORS ****************
    public class UserAccessController{ 
-        public UserAccessController() {
-        }
 
    // create a getter/setter for user's name passed in when the Find User button is pressed
    public String uName 
