@@ -1,8 +1,11 @@
 /**
  * Custom Sharing Button per tweet: https://twitter.com/judis217/status/384040196297076736
  *
- * @author atorman@salesforce.com
+ * @author atorman
  * @September 2013
+ *
+ * @updated capeterson
+ * @October 2013 
  *
  * This code requires a button on each page layout that redirects user to this page and passes the record Id: 
  * for example: /apex/userAccess?Id={!Account.Id}
