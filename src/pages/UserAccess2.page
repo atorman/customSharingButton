@@ -1,0 +1,39 @@
+<apex:page standardController="Account" extensions="UserAccessController2" sidebar="false">
+<apex:sectionHeader title="User Record Access"/> 
+  <apex:form >  
+           <apex:pageBlock title="Search for a user">
+            <apex:pageBlockSection >
+              <apex:pageBlockSectionItem >
+                <apex:outputLabel for="userName">User Name, Profile, or Role</apex:outputLabel>
+                <apex:panelGroup >
+                  <apex:inputText id="queryInput" value="{!queryString}" styleClass="requiredInput"  />
+                  <apex:commandButton id="btnFindUser" value="Get User Access" action="{!queryUsersAndRecordAccess}" styleClass="btnPrimary" rerender="userResults" status="statusUser"/>
+                  <apex:actionStatus id="statusUser" startText="loading..."/>
+                </apex:panelGroup>
+              </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+               
+            <apex:pageBlockSection title="User Access Results" id="userResults" columns="1">
+              <apex:pageBlockTable value="{!userResults}" var="ur" rendered="{!NOT(ISNULL(userResults))}"> 
+                <apex:column >
+                  <apex:facet name="header">Name</apex:facet>
+                  <apex:outputLink value="/{!ur.user.Id}?noredirect=1" target="_blank">{!ur.user.Name}</apex:outputLink>
+                </apex:column>
+                <apex:column >
+                  <apex:facet name="header">Profile</apex:facet>
+                  <apex:outputText value="{!ur.user.Profile.Name}"/>
+                </apex:column>
+                <apex:column >
+                  <apex:facet name="header">Role</apex:facet>
+                  <apex:outputText value="{!ur.user.UserRole.Name}"/>
+                </apex:column>
+                <apex:column >
+                  <apex:facet name="header">Maximum Access Level</apex:facet>
+                  <apex:outputText label="Access Level" value="{!ur.recordAccess.MaxAccessLevel}" />
+                </apex:column>
+              </apex:pageBlockTable>
+            </apex:pageBlockSection>
+               
+          </apex:pageBlock>       
+   </apex:form>
+</apex:page>
