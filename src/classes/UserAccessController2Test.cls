@@ -8,23 +8,23 @@ private class UserAccessController2Test {
         TestDataSetup testSetup = new TestDataSetup(false);
 
         // create instance of controller and call method with UserRows and Entity Id (testAccount)
-        UserAccessController2 controller = new UserAccessController2(new ApexPages.StandardController(new Account()));
+        UserAccessController2 controller = new UserAccessController2();
         List<UserAccessController2.UserRow> returnedUserRows = controller.fillUserResultsRecordAccess(testSetup.userRows, testSetup.accountId);
         
         // compare expected access with returned access
         checkUserRows(testSetup.expectedRowsWithAccess, returnedUserRows);
     }
     
-    static testMethod void testQueryUsersAndRecordAccess() {
-        // create instance of controller and call queryUsersAndRecordAccess
-        UserAccessController2 controller = new UserAccessController2(new ApexPages.StandardController(new Account()));
-        controller.queryUsersAndRecordAccess();
+    static testMethod void testGetUserAccess() {
+        // create instance of controller and call getUserAccess
+        UserAccessController2 controller = new UserAccessController2();
+        controller.getUserAccess();
         
         // compare expected access with returned access
         TestDataSetup testSetup = new TestDataSetup(true);
         checkUserRows(testSetup.expectedRowsWithAccess, controller.userResults);
     }
-            
+    
     /**
      * Compare the size of the result sets, and then compare the attributes (UserId, RecordId, MaxAccessLevel)
      */
@@ -41,15 +41,15 @@ private class UserAccessController2Test {
         }
     }
     
-	// inner-class to initialize and hold common/shared test data
+    // inner-class to initialize and hold common/shared test data
     private class TestDataSetup {
         Map<Id, UserAccessController2.UserRow> expectedRowsWithAccess{get;set;}
         List<UserAccessController2.UserRow> userRows{get;set;}
         String accountId{get;set;}
     
         public TestDataSetup(boolean shouldUseFakeEntityId) {
-        	expectedRowsWithAccess = new Map<Id, UserAccessController2.UserRow>();
-			userRows = new List<UserAccessController2.UserRow>();          
+            expectedRowsWithAccess = new Map<Id, UserAccessController2.UserRow>();
+            userRows = new List<UserAccessController2.UserRow>();          
             
             // create test users and add newly created UserRows to list that will be used to get UserRecordAccess
             User testUser1 = UserAccessController2.createUser('test1@test.com', 'alias1', '005i0000000ZZzy');
